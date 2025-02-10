@@ -1,0 +1,8 @@
+apiVersion: stable.example.com/v1
+kind: PdfDocument
+metadata:
+  name: my-document
+spec:
+  documentName: test-document
+  text: |
+    ### custome resource of type pdfDocument
