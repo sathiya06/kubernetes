@@ -28,8 +28,23 @@ velero backup create [backup_name] --include-namespaces [list of namespaces to i
 
 Note: delete the namespace that you have backedup to simulate a disaster. 
 
+Update your backup storage location to read-only mode:
+```
+kubectl patch backupstoragelocation [STORAGE LOCATION NAME] \
+    --namespace velero \
+    --type merge \
+    --patch '{"spec":{"accessMode":"ReadOnly"}}'
+```
+
+
 To start a restore run:
 ```
 velero restore create --from-backup [backup_name]
 ```
-
+Update your backup storage location to read-write mode
+```
+kubectl patch backupstoragelocation <STORAGE LOCATION NAME> \
+   --namespace velero \
+   --type merge \
+   --patch '{"spec":{"accessMode":"ReadWrite"}}'
+```
