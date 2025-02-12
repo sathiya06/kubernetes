@@ -5,14 +5,22 @@ Project creating commands are:
 operator-sdk init --domain example.com --repo github.com/example/memcached-operator
 operator-sdk create api --group cache --version v1alpha1 --kind Memcached --resource --controller
 ```
+Make the required changes to the below files based on the functions that you need the operator todo
++ `api/v1alpha1/[operator_name]_types.go` - Define the different values need for you CR.
++ `internal/controller/[operator_name]_controller.go` - complete the reconcile loop for your controller.
 
-To run your operator in a local development cluster. 
+Run the below command to generate manifest:
 ```
-make install run
+make manifests
 ```
 
-This project will:
+Install the CRDs into the cluster:
+```
+make install
+```
 
-* Create a Memcached Deployment if it doesn’t exist
-* Ensure that the Deployment size is the same as specified by the Memcached CR spec
-* Update the Memcached CR status using the status writer with the names of the CR’s pods
+To run your operator in the cluster. 
+```
+make run
+```
+
