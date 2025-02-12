@@ -1,0 +1,1 @@
+eksctl create cluster --name velero-demo-large --region us-east-2 --nodegroup-name large-linux-nodes --node-type t3.large --nodes 2
